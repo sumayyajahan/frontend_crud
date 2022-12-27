@@ -46,7 +46,10 @@ public class AccountService {
 
         accountRepo.deleteById(id);
     }
-    public void accPrimesNum(){
-        //accountRepo.
+//    public void accPrimesNum(){
+//        //accountRepo.
+//    }
+    public List<Account> getPrimeAccount(){
+       return accountRepo.findAllByBalanceGreaterThan(10000);
     }
 }

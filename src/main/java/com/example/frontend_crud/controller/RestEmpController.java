@@ -4,29 +4,32 @@ import com.example.frontend_crud.entity.Account;
 import com.example.frontend_crud.entity.Employee;
 import com.example.frontend_crud.service.AccountService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class RestEmpController {
-
+@Autowired
     private AccountService accountService;
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public ResponseEntity<List<Account>> getAllAccounts(){
 
         List<Account> list = accountService.getAllAcc();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
-//    @GetMapping("/primeAcc")
-//    public ResponseEntity<List<Account>> getAllPrimesAcc(){
-//
-//        return new ResponseEntity<>(list);
-//    }
+    @GetMapping("/primeAccs")
+    public ResponseEntity<List<Account>> getAllPrimesAcc(){
+        List<Account> result = accountService.getPrimeAccount();
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
 
 //    @GetMapping("/addEmp")
 //    public String addEmp(){
